@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+<!DOCTYPE html>
+<html>
+<style>
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Form styles */
+form {
+  background-color: #f9fafb;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px #e1e5ea;
+  margin-bottom: 40px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+  font-size: 1rem;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1.8px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type=text]:focus, select:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 6px #a3d7a5;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type=submit]:hover {
+  background-color: #388e3c;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  font-size: 1rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px 18px;
+  background-color: white;
+  border-bottom: none;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+tbody tr {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+  background-color: #e6f4ea;
+}
+
+td:last-child {
+  font-weight: 600;
+}
+
+td a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #4caf50;
+  transition: color 0.3s ease;
+}
+
+td a:hover {
+  color: #388e3c;
+}
+
+h2, h1 {
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+</style>
+<body>
+<div class="container">
+<h2>salary ADD</h2>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  <label for="fname">employee_image</label>
+  <input type="file" id="fname" name="employee_image" placeholder="Your name..">
+  {% if salary_data.employee_image %}
+            <img src="{{salary_data.employee_image.url}}" width="150px">
+        {% endif %}
+
+  <label for="lname">employee</label>
+  <select name="employee" id="">
+    <option value="">--select-e--</option>
+    
+    {% for i in employee %}
+        <option value="{{i.id}}" 
+        {% if salary_data.employee.id == i.id %}
+            selected
+        {% endif %}
+            >{{i.name}}</option>
+    {% endfor %}
+        
+  <label for="lname">basic_salary</label>
+  <input type="text" value="{{salary_data.basic_salary}}" id="lname" name="basic_salary" placeholder="Your last name..">
+  <label for="lname">bonus_percentage</label>
+    <input type="text" value="{{salary_data.bonus_percentage}}"  id="lname" name="bonus_percentage" placeholder="Your last name..">
+  </select>
+  <input type="submit" value="Submit">
+</form></div>
+</body>
+</html>    
+{% endblock body %}
+
+

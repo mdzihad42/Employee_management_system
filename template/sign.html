@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signup Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background:url(.../);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .signup-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    .signup-container label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+    select{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    .signup-container input[type="text"],
+    .signup-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    .signup-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .signup-container button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Signup</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">choose_user</label>
+        <select name="choose_user" id="">
+            <option value="HR">HR</option>
+            <option value="SR">SR</option>
+        </select>
+        <label for="username">username</label>
+      <input type="text" name="username" placeholder="Enter username" required />
+      <label for="username">email</label>
+      <input type="text" name="email" placeholder="Enter username" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required />
+
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" required />
+        <p>you have an account &nbsp; <a href="{% url 'loginPage' %}">login</a></p>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</body>
+</html>
