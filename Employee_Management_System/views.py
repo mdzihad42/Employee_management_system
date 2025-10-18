@@ -135,13 +135,15 @@ def basePage(request):
                 }
     return render(request,"base.html",context)
 def signupPage(request):
+    user_exists=False
     if request.method=="POST":
         choose_user=request.POST.get("choose_user")
         username=request.POST.get("username")
         email=request.POST.get("email")
         password=request.POST.get("password")
         confirm_password=request.POST.get("confirm_password")
-        
+        if user_exists:
+            return render(request, "sign.html", {'user_exists': True})
         if password==confirm_password:
             customUser.objects.create_user(
                 user_type=choose_user,
@@ -150,7 +152,7 @@ def signupPage(request):
                 password=confirm_password
             )
             return redirect('loginPage')
-    return render(request,"sign.html")
+    return render(request,"sign.html",{'user_exists': user_exists})
 def loginPage(request):
     if request.method=="POST":
         username=request.POST.get("username")
@@ -165,4 +167,5 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('loginPage')
+
     
