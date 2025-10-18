@@ -71,6 +71,9 @@
     <h2>Signup</h2>
     <form method="POST">
         {% csrf_token %}
+      {% if user_exists %}
+        <span style="color:red;">Username already exists. Try another.</span>
+        {% endif %}
         <label for="username">choose_user</label>
         <select name="choose_user" id="">
             <option value="HR">HR</option>
@@ -91,3 +94,4 @@
   </div>
 </body>
 </html>
+
