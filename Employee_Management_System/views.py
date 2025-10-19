@@ -142,6 +142,7 @@ def signupPage(request):
         email=request.POST.get("email")
         password=request.POST.get("password")
         confirm_password=request.POST.get("confirm_password")
+        user_exists = customUser.objects.filter(username=username).exists()
         if user_exists:
             return render(request, "sign.html", {'user_exists': True})
         if password==confirm_password:
@@ -169,3 +170,4 @@ def logoutPage(request):
     return redirect('loginPage')
 
     
+
